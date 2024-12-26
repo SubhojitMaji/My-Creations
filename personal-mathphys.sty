@@ -1,0 +1,403 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{personal-mathphys}[2024/12/31 Personal Mathematics and Physics Style]
+
+% Version check
+\RequirePackage{etoolbox}
+\@ifpackagelater{etoolbox}{2020/10/05}{}{\PackageWarning{personal-mathphys}{Package etoolbox too old}}
+
+% ================ Document Setup and Fonts ================
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{microtype}
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{csquotes}
+
+% Professional yet modern fonts
+\RequirePackage{newpxtext}  % Palatino-like text font
+\RequirePackage{newpxmath}  % Matching math font
+\RequirePackage{cabin}      % Sans-serif for headers
+
+% Page layout optimized for math/physics content
+\geometry{
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=3cm,
+    headheight=14pt,
+    marginparwidth=3cm,  % Wider margins for annotations
+    marginparsep=7pt
+}
+
+% Header/footer style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ================ Custom Colors ================
+\RequirePackage{xcolor}
+\definecolor{NavyBlue}{RGB}{0,32,91}
+\definecolor{DeepTeal}{RGB}{0,128,128}
+\definecolor{WarmGray}{RGB}{128,128,128}
+\definecolor{RoyalPurple}{RGB}{102,51,153}
+\definecolor{TheoremBlue}{RGB}{230,240,255}
+\definecolor{LemmaGreen}{RGB}{230,255,230}
+\definecolor{DefinitionPeach}{RGB}{255,240,230}
+\definecolor{ExampleLavender}{RGB}{245,230,255}
+\definecolor{NotePink}{RGB}{255,230,240}
+
+% Section styling
+\RequirePackage{titlesec}
+\titleformat{\section}
+    {\Large\bfseries\sffamily\color{NavyBlue}}
+    {\thesection}{1em}{}
+\titleformat{\subsection}
+    {\large\bfseries\sffamily\color{NavyBlue}}
+    {\thesubsection}{1em}{}
+
+% ================ Enhanced Mathematical and Physics Packages ================
+% Math operators (consolidated)
+\RequirePackage{amsmath,amsthm,amssymb,mathtools}
+% Math operators
+\DeclareMathOperator{\Tr}{Tr}        % Trace operator
+\DeclareMathOperator{\Spec}{Spec}    % Spectrum of a matrix/operator
+\DeclareMathOperator{\Res}{Res}      % Residue of a complex function
+\DeclareMathOperator{\Log}{Log}      % Complex logarithm
+\DeclareMathOperator{\curl}{curl}    % Curl of a vector field
+\DeclareMathOperator{\dive}{div}     % Divergence of a vector field
+\DeclareMathOperator{\grad}{grad}    % Gradient of a scalar field
+\DeclareMathOperator{\rot}{rot}      % Rotation operator
+\DeclareMathOperator{\sign}{sign}    % Sign function
+\DeclareMathOperator{\Aut}{Aut}      % Automorphism group
+\DeclareMathOperator{\Inn}{Inn}      % Inner automorphism group
+\DeclareMathOperator{\Syl}{Syl}      % Sylow subgroup
+\DeclareMathOperator{\Gal}{Gal}      % Galois group
+\DeclareMathOperator{\GL}{GL}        % General linear group
+\DeclareMathOperator{\SL}{SL}        % Special linear group
+\DeclareMathOperator{\Vol}{Vol}      % Volume
+\DeclareMathOperator{\id}{id}        % Identity map
+\DeclareMathOperator{\diam}{diam}    % Diameter
+\DeclareMathOperator{\ord}{ord}      % Order of an element
+\DeclareMathOperator{\img}{im}       % Image of a map (lowercase)
+\DeclareMathOperator{\Img}{Im}       % Image of a map (uppercase)
+\DeclareMathOperator{\coker}{coker}  % Cokernel (lowercase)
+\DeclareMathOperator{\Coker}{Coker}  % Cokernel (uppercase)
+\DeclareMathOperator{\Ker}{Ker}      % Kernel of a map
+\DeclareMathOperator{\rank}{rank}    % Rank of a matrix/module
+\DeclareMathOperator{\pr}{pr}        % Projection map
+\DeclareMathOperator{\ext}{ext}      % Extension
+\DeclareMathOperator{\pred}{pred}    % Predecessor
+\DeclareMathOperator{\dom}{dom}      % Domain
+\DeclareMathOperator{\ran}{ran}      % Range
+\DeclareMathOperator{\Hom}{Hom}      % Homomorphism
+\DeclareMathOperator{\Mor}{Mor}      % Morphism
+\DeclareMathOperator{\End}{End}      % Endomorphism
+\DeclareMathOperator{\Ext}{Ext}      % Ext functor
+\DeclareMathOperator{\Tor}{Tor}      % Tor functor
+
+% Standard mathematical sets
+\newcommand{\AA}{\mathbb{A}}         % Affine space
+\newcommand{\BB}{\mathbb{B}}         % Generic set B
+\newcommand{\CC}{\mathbb{C}}         % Complex numbers
+\newcommand{\DD}{\mathbb{D}}         % Unit disk
+\newcommand{\EE}{\mathbb{E}}         % Expected value
+\newcommand{\FF}{\mathbb{F}}         % Generic field
+\newcommand{\GG}{\mathbb{G}}         % Groups
+\newcommand{\HH}{\mathbb{H}}         % Quaternions
+\newcommand{\II}{\mathbb{I}}         % Generic set I
+\newcommand{\JJ}{\mathbb{J}}         % Generic set J
+\newcommand{\KK}{\mathbb{K}}         % Generic field K
+\newcommand{\LL}{\mathbb{L}}         % Generic set L
+\newcommand{\MM}{\mathbb{M}}         % Generic set M
+\newcommand{\NN}{\mathbb{N}}         % Natural numbers
+\newcommand{\OO}{\mathbb{O}}         % Big O notation
+\newcommand{\PP}{\mathbb{P}}         % Projective space
+\newcommand{\QQ}{\mathbb{Q}}         % Rational numbers
+\newcommand{\RR}{\mathbb{R}}         % Real numbers
+\newcommand{\SS}{\mathbb{S}}         % Sphere
+\newcommand{\TT}{\mathbb{T}}         % Torus
+\newcommand{\UU}{\mathbb{U}}         % Generic set U
+\newcommand{\VV}{\mathbb{V}}         % Vector space
+\newcommand{\WW}{\mathbb{W}}         % Generic set W
+\newcommand{\XX}{\mathbb{X}}         % Generic set X
+\newcommand{\YY}{\mathbb{Y}}         % Generic set Y
+\newcommand{\ZZ}{\mathbb{Z}}         % Integers
+
+% Lie algebra commands
+\newcommand{\fa}{\mathfrak{a}}       % Lie algebra a
+\newcommand{\fb}{\mathfrak{b}}       % Lie algebra b
+\newcommand{\fc}{\mathfrak{c}}       % Lie algebra c
+\newcommand{\fd}{\mathfrak{d}}
+\newcommand{\fe}{\mathfrak{e}}
+\newcommand{\ff}{\mathfrak{f}}
+\newcommand{\fg}{\mathfrak{g}}
+\newcommand{\fh}{\mathfrak{h}}
+\newcommand{\fi}{\mathfrak{i}}
+\newcommand{\fj}{\mathfrak{j}}
+\newcommand{\fk}{\mathfrak{k}}
+\newcommand{\fl}{\mathfrak{l}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\fn}{\mathfrak{n}}
+\newcommand{\fo}{\mathfrak{o}}
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\fq}{\mathfrak{q}}
+\newcommand{\fr}{\mathfrak{r}}
+\newcommand{\fs}{\mathfrak{s}}
+\newcommand{\ft}{\mathfrak{t}}
+\newcommand{\fu}{\mathfrak{u}}
+\newcommand{\fv}{\mathfrak{v}}
+\newcommand{\fw}{\mathfrak{w}}
+\newcommand{\fx}{\mathfrak{x}}
+\newcommand{\fy}{\mathfrak{y}}
+\newcommand{\fz}{\mathfrak{z}}
+\newcommand{\gl}{\mathfrak{gl}}      % General linear Lie algebra
+\newcommand{\sl}{\mathfrak{sl}}      % Special linear Lie algebra
+
+% Script and calligraphic letters
+\newcommand{\SA}{\mathcal{A}}        % Calligraphic A
+\newcommand{\SB}{\mathcal{B}}        % Calligraphic B
+\newcommand{\CD}{\mathcal{D}}
+\newcommand{\CE}{\mathcal{E}}
+\newcommand{\CF}{\mathcal{F}}
+\newcommand{\CG}{\mathcal{G}}
+\newcommand{\CH}{\mathcal{H}}
+\newcommand{\CI}{\mathcal{I}}
+\newcommand{\CJ}{\mathcal{J}}
+\newcommand{\CK}{\mathcal{K}}
+\newcommand{\CL}{\mathcal{L}}
+\newcommand{\CM}{\mathcal{M}}
+\newcommand{\CN}{\mathcal{N}}
+\newcommand{\CO}{\mathcal{O}}
+\newcommand{\CP}{\mathcal{P}}
+\newcommand{\CQ}{\mathcal{Q}}
+\newcommand{\CR}{\mathcal{R}}
+\newcommand{\CS}{\mathcal{S}}
+\newcommand{\CT}{\mathcal{T}}
+\newcommand{\CU}{\mathcal{U}}
+\newcommand{\CV}{\mathcal{V}}
+\newcommand{\CW}{\mathcal{W}}
+\newcommand{\CX}{\mathcal{X}}
+\newcommand{\CY}{\mathcal{Y}}
+\newcommand{\CZ}{\mathcal{Z}}
+
+% Geometry commands
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}    % Absolute value
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}   % Norm
+\newcommand{\dang}{\measuredangle}                    % Angle measure
+\newcommand{\ray}[1]{\overrightarrow{#1}}            % Ray
+\newcommand{\seg}[1]{\overline{#1}}                  % Line segment
+
+% Logic and general math
+\newcommand{\liff}{\leftrightarrow}                  % Logical if and only if
+\newcommand{\lthen}{\rightarrow}                     % Logical implication
+\newcommand{\taking}[1]{\xrightarrow{#1}}            % Labeled arrow
+\newcommand{\inv}{^{-1}}                            % Inverse
+\newcommand{\defeq}{\overset{\mathrm{def}}{=}}      % Definition equals
+\newcommand{\surjto}{\twoheadrightarrow}            % Surjective map
+\newcommand{\injto}{\hookrightarrow}                % Injective map
+
+% Physics specific
+\newcommand{\vect}[1]{\mathbf{#1}}                  % Vector notation
+\newcommand{\uvec}[1]{\hat{\mathbf{#1}}}           % Unit vector
+\newcommand{\divg}{\nabla\cdot}                     % Divergence
+
+% Quantum mechanics
+\newcommand{\bra}[1]{\left\langle#1\right|}         % Bra notation
+\newcommand{\ket}[1]{\left|#1\right\rangle}         % Ket notation
+\newcommand{\braket}[2]{\left\langle#1|#2\right\rangle} % Braket notation
+\newcommand{\mean}[1]{\left\langle#1\right\rangle}  % Expected value
+
+% Physics constants
+\newcommand{\clight}{\ensuremath{c}}                % Speed of light
+\newcommand{\planck}{\ensuremath{\hbar}}            % Planck's constant
+\newcommand{\boltz}{\ensuremath{k_\text{B}}}        % Boltzmann constant
+
+% Matrix notation
+\newcommand{\mat}[1]{\mathbf{#1}}                   % Matrix bold notation
+\newcommand{\tmat}[1]{\widetilde{\mathbf{#1}}}     % Tilde matrix notation
+\newcommand{\transpose}[1]{{#1}^{\mathsf{T}}}       % Matrix transpose
+
+\RequirePackage{physics}      % Physics notation
+\RequirePackage{siunitx}      % SI units
+\RequirePackage{tensor}       % Tensor notation
+\RequirePackage{chemformula}  % Chemical formulas
+\RequirePackage{mhchem}       % Chemical equations
+\RequirePackage{tikz-cd}      % Commutative diagrams
+\RequirePackage{circuitikz}   % Electric circuits
+
+% ================ Enhanced Box Environments ================
+\RequirePackage[most]{tcolorbox}
+\tcbset{
+    enhanced,
+    breakable,
+    sharp corners,
+    boxrule=0.5pt,
+    fonttitle=\bfseries\sffamily,
+    attach boxed title to top left={yshift=-2mm,xshift=2mm},
+    colframe=NavyBlue!70,
+    parskip=6pt  % Control spacing within boxes
+}
+
+% Theorem-like environments with consistent styling
+\newtcbtheorem[number within=section]{theorem}{Theorem}{
+    colback=TheoremBlue!30,
+    colframe=NavyBlue,
+    fonttitle=\bfseries
+}{th}
+
+\newtcbtheorem[number within=section]{lemma}{Lemma}{
+    colback=LemmaGreen!30,
+    colframe=NavyBlue
+}{lem}
+
+\newtcbtheorem[number within=section]{definition}{Definition}{
+    colback=DefinitionPeach!30,
+    colframe=NavyBlue
+}{def}
+
+% Physics-specific environments
+\newtcbtheorem[number within=section]{law}{Physical Law}{
+    colback=TheoremBlue!20,
+    colframe=NavyBlue
+}{law}
+
+\newtcbtheorem[number within=section]{experiment}{Experiment}{
+    colback=ExampleLavender!30,
+    colframe=NavyBlue
+}{exp}
+
+% Notes and observations
+\newtcbtheorem[number within=section]{note}{Note}{
+    colback=NotePink!20,
+    colframe=NavyBlue
+}{note}
+
+
+
+% ================ Convenient Shortcuts ================
+% Vector notation
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\uvec}[1]{\hat{\mathbf{#1}}}
+\newcommand{\divg}{\nabla\cdot}
+
+% Quantum mechanics
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\braket}[2]{\left\langle#1|#2\right\rangle}
+\newcommand{\mean}[1]{\left\langle#1\right\rangle}
+
+% Common physics constants
+\newcommand{\clight}{\ensuremath{c}}
+\newcommand{\planck}{\ensuremath{\hbar}}
+\newcommand{\boltz}{\ensuremath{k_\text{B}}}
+
+% Matrix shortcuts
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\tmat}[1]{\widetilde{\mathbf{#1}}}
+\newcommand{\transpose}[1]{{#1}^{\mathsf{T}}}
+
+% ================ Bibliography and References ================
+\RequirePackage[
+    style=numeric,
+    sorting=none,
+    backend=biber,
+    maxbibnames=99,
+    doi=true,
+    url=false,
+    doi.show=true,  % Show DOIs in bibliography
+    url.show=false  % Don't show URLs unless necessary
+]{biblatex}
+
+% Enhanced cross-referencing
+\RequirePackage[nameinlink,noabbrev]{cleveref}
+\crefname{equation}{Equation}{Equations}
+\crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+
+% ================ Custom Title Page ================
+\newcommand{\maketitlepage}[4]{  % Title, Author, Institution, Date
+    \begin{titlepage}
+        \centering
+        \vspace*{2cm}
+        {\Huge\bfseries\sffamily\color{NavyBlue} #1\par}
+        \vspace{2cm}
+        {\Large\sffamily #2\par}
+        \vspace{1cm}
+        {\large\sffamily #3\par}
+        \vfill
+        {\large\sffamily #4\par}
+    \end{titlepage}
+}
+% ================ Table of Contents Styling ================
+\RequirePackage{titletoc}
+\RequirePackage{tocloft}
+
+% Use classic dots in TOC
+\renewcommand{\cftdot}{.}
+\renewcommand{\cftdotsep}{2}
+
+% Adjust spacing for a more compact look
+\setlength{\cftbeforesecskip}{0.8em}
+\setlength{\cftbeforesubsecskip}{0.4em}
+\setlength{\cftbeforesubsubsecskip}{0.2em}
+
+% Style section entries with classic fonts and sizes
+\renewcommand{\cftsecfont}{\normalsize\bfseries}
+\renewcommand{\cftsecpagefont}{\normalsize}
+\renewcommand{\cftsubsecfont}{\normalsize}
+\renewcommand{\cftsubsecpagefont}{\normalsize}
+\renewcommand{\cftsubsubsecfont}{\small}
+\renewcommand{\cftsubsubsecpagefont}{\small}
+
+% Chapter styling
+\titleformat{\chapter}[display]
+    {\Huge\bfseries\sffamily\color{NavyBlue}}
+    {\filright\Large\sffamily\color{DeepTeal}Chapter \thechapter}
+    {1em}
+    {\filright}
+    [\vspace{1ex}{\titlerule[0.5pt]}]
+
+\titlespacing*{\chapter}
+    {0pt}   % left
+    {-20pt} % before
+    {40pt}  % after
+
+
+% Classic dotted leaders
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
+
+% More traditional TOC title
+\renewcommand{\contentsname}{Contents}
+
+% Create classic TOC page
+\newcommand{\maketocpage}{
+    \begin{center}
+        \vspace*{1cm}
+        {\Large\bfseries Contents}
+        \vspace{0.5cm}
+    \end{center}
+    \tableofcontents
+}
+
+% Conditional TOC styling based on document class
+\@ifclassloaded{book}{
+    % Book-specific TOC settings with classic styling
+    \renewcommand{\cftchapfont}{\large\bfseries\color{NavyBlue}}
+\renewcommand{\cftchappagefont}{\bfseries\color{NavyBlue}}
+\renewcommand{\cftchapleader}{\color{NavyBlue!30}\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforechapskip}{1.2em}
+    
+    % Part entries in TOC
+    \renewcommand{\cftpartfont}{\large\bfseries}
+    \renewcommand{\cftpartpagefont}{\normalsize}
+    \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
+    \setlength{\cftbeforepartskip}{1.5em}
+}{}
+
+\endinput
