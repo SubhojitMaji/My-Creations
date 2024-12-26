@@ -277,6 +277,42 @@
     colframe=NavyBlue
 }{note}
 
+% Hints box with LaTeX lightbulb symbol using wasysym package
+\RequirePackage{wasysym}  % For \lightbulb symbol
+\newtcbtheorem[number within=section]{hint}{Hint}{
+    enhanced,
+    colback=yellow!10,
+    colframe=yellow!50!black,
+    fonttitle=\bfseries,
+    overlay unbroken and first={
+        \node[anchor=west] at ([xshift=10pt]frame.west) {\Large\textcolor{yellow!50!black}{$\lightbulb$}};
+    },
+    left=25pt
+}{hint}
+
+% Proof box with QED symbol
+\newtcbtheorem[number within=section]{proof}{Proof}{
+    enhanced,
+    colback=gray!5,
+    colframe=gray!50,
+    fonttitle=\bfseries,
+    overlay unbroken and last={
+        \node[anchor=east] at ([xshift=-5pt]frame.east) {$\square$};
+    }
+}{prf}
+
+% Remark box with pencil symbol using amssymb
+\RequirePackage{amssymb}  % Already included in the package
+\newtcbtheorem[number within=section]{remark}{Remark}{
+    enhanced,
+    colback=blue!5,
+    colframe=blue!50,
+    fonttitle=\bfseries,
+    overlay unbroken and first={
+        \node[anchor=west] at ([xshift=10pt]frame.west) {\Large\textcolor{blue!50}{$\triangleleft$}};
+    },
+    left=25pt
+}{rem}
 
 
 % ================ Convenient Shortcuts ================
