@@ -303,16 +303,18 @@
 
 % Remark box with pencil symbol using amssymb
 \RequirePackage{amssymb}  % Already included in the package
+\RequirePackage{fontawesome5}
+
 \newtcbtheorem[number within=section]{remark}{Remark}{
     enhanced,
+    breakable,
     colback=blue!5,
     colframe=blue!50,
     fonttitle=\bfseries,
-    overlay unbroken and first={
-        \node[anchor=west] at ([xshift=10pt]frame.west) {\Large\textcolor{blue!50}{$\triangleleft$}};
-    },
-    left=25pt
-}{rem}
+    sharp corners
+    }
+{rem}
+
 
 
 % ================ Convenient Shortcuts ================
