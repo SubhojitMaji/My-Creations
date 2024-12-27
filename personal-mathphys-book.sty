@@ -1,0 +1,76 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{personal-mathphys-book}[2024/12/31 Personal Mathematics and Physics Book Style]
+
+% Version check (same as before)
+\RequirePackage{etoolbox}
+\@ifpackagelater{etoolbox}{2020/10/05}{}{\PackageWarning{personal-mathphys-book}{Package etoolbox too old}}
+
+% Load base package
+\RequirePackage{personal-mathphys} % Inherit settings from the base package
+
+% Book-specific settings
+
+% Chapter styling (modified for book class)
+\titleformat{\chapter}[display]
+    {\Huge\bfseries\sffamily\color{NavyBlue}}
+    {\filright\Large\sffamily\color{DeepTeal}Chapter \thechapter}
+    {1em}
+    {\filright}
+    [\vspace{1ex}{\titlerule[0.5pt]}]
+
+\titlespacing*{\chapter}
+    {0pt}    % left
+    {-20pt} % before
+    {40pt}  % after
+
+% Part styling
+\titleformat{\part}[display]
+    {\centering\Huge\bfseries\sffamily\color{NavyBlue}}
+    {}
+    {0pt}
+    {\vspace{20pt}\Huge\bfseries\sffamily\color{NavyBlue}} % Part title formatting
+    [\vspace{1ex}{\titlerule[0.5pt]}]
+
+\titlespacing*{\part}
+    {0pt}    % Left
+    {-30pt} % Before
+    {20pt}  % After
+
+
+% TOC styling (enhanced for book)
+\renewcommand{\cftchapfont}{\large\bfseries\color{NavyBlue}}
+\renewcommand{\cftchappagefont}{\bfseries\color{NavyBlue}}
+\renewcommand{\cftchapleader}{\color{NavyBlue!30}\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforechapskip}{1.2em}
+
+% Part entries in TOC
+\renewcommand{\cftpartfont}{\large\bfseries\color{NavyBlue}} % Style part titles
+\renewcommand{\cftpartpagefont}{\normalsize\color{NavyBlue}} % Style part page numbers
+\renewcommand{\cftpartleader}{\color{NavyBlue!30}\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforepartskip}{1.5em}
+
+% Chapter mark formatting for headers
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter.\ #1}}{}}
+
+% Frontmatter, mainmatter, backmatter commands (for consistency)
+\newcommand{\myfrontmatter}{\frontmatter}
+\newcommand{\mymainmatter}{\mainmatter}
+\newcommand{\mybackmatter}{\backmatter}
+
+\newcommand{\maketitlepagebook}[5]{ % Title, Subtitle, Author, Institution, Date
+    \begin{titlepage}
+        \centering
+        \vspace*{2cm}
+        {\Huge\bfseries\sffamily\color{NavyBlue} #1\par} % Title
+        \vspace{1cm}
+        {\LARGE\sffamily #2\par} % Subtitle
+        \vspace{2cm}
+        {\Large\sffamily #3\par} % Author
+        \vspace{1cm}
+        {\large\sffamily #4\par} % Institution
+        \vfill
+        {\large\sffamily #5\par} % Date
+    \end{titlepage}
+}
+
+\endinput
