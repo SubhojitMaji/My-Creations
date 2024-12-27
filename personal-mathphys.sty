@@ -5,7 +5,9 @@
 \RequirePackage{etoolbox}
 \@ifpackagelater{etoolbox}{2020/10/05}{}{\PackageWarning{personal-mathphys}{Package etoolbox too old}}
 
-% ================ Document Setup and Fonts ================
+
+% ================ Enhanced Font Support ================
+
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{microtype}
@@ -15,10 +17,127 @@
 \RequirePackage{subcaption}
 \RequirePackage{csquotes}
 
-% Professional yet modern fonts
-\RequirePackage{newpxtext}  % Palatino-like text font
-\RequirePackage{newpxmath}  % Matching math font
-\RequirePackage{cabin}      % Sans-serif for headers
+
+% Extended font packages
+\RequirePackage{unicode-math}
+\RequirePackage{newpxtext}
+\RequirePackage{newpxmath}
+\RequirePackage{cabin}
+\RequirePackage{sourcecodepro}  % For code listings
+\RequirePackage{libertinus}     % Alternative serif font
+\RequirePackage{ebgaramond}    % Classic elegant font
+\RequirePackage{inconsolata}   % Modern monospace font
+
+
+% Font selection commands
+\newcommand{\changefontfamily}[1]{
+    \ifthenelse{\equal{#1}{palatino}}{
+        \RequirePackage{newpxtext}
+        \RequirePackage{newpxmath}
+    }{}
+    \ifthenelse{\equal{#1}{times}}{
+        \RequirePackage{newtxtext}
+        \RequirePackage{newtxmath}
+    }{}
+    \ifthenelse{\equal{#1}{garamond}}{
+        \RequirePackage{ebgaramond}
+        \RequirePackage{ebgaramond-maths}
+    }{}
+    \ifthenelse{\equal{#1}{libertinus}}{
+        \RequirePackage{libertinus}
+        \RequirePackage{libertinust1math}
+    }{}
+}
+
+
+% Enhanced section styling with multiple options
+\newcommand{\setsectionstyle}[1]{
+    \ifthenelse{\equal{#1}{modern}}{
+        \titleformat{\section}
+            {\Large\bfseries\sffamily\color{NavyBlue}}
+            {\thesection}{1em}{}[\titlerule]
+        \titleformat{\subsection}
+            {\large\bfseries\sffamily\color{NavyBlue}}
+            {\thesubsection}{1em}{}
+    }{}
+    \ifthenelse{\equal{#1}{classic}}{
+        \titleformat{\section}
+            {\Large\bfseries\rmfamily\color{NavyBlue}}
+            {\thesection.}{1em}{}
+        \titleformat{\subsection}
+            {\large\bfseries\rmfamily\color{NavyBlue}}
+            {\thesubsection.}{1em}{}
+    }{}
+    \ifthenelse{\equal{#1}{minimal}}{
+        \titleformat{\section}
+            {\Large\bfseries\color{black}}
+            {\thesection}{1em}{}
+        \titleformat{\subsection}
+            {\large\bfseries\color{black}}
+            {\thesubsection}{1em}{}
+    }{}
+}
+
+% Code listing styles with different fonts
+\RequirePackage{listings}
+\lstdefinestyle{moderncode}{
+    basicstyle=\small\ttfamily\fontfamily{SourceCodePro-TLF}\selectfont,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    framesep=3pt,
+    breaklines=true,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{purple}
+}
+
+\lstdefinestyle{classiccode}{
+    basicstyle=\small\ttfamily\fontfamily{inconsolata}\selectfont,
+    backgroundcolor=\color{yellow!10},
+    frame=single,
+    framesep=3pt,
+    breaklines=true,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{NavyBlue},
+    commentstyle=\color{RoyalPurple},
+    stringstyle=\color{DeepTeal}
+}
+
+% Enhanced page layout
+\geometry{
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=3cm,
+    headheight=14pt,
+    marginparwidth=3cm,
+    marginparsep=7pt,
+    footskip=1.5cm
+}
+
+% Enhanced header/footer styles
+\fancypagestyle{modern}{
+    \fancyhf{}
+    \fancyhead[L]{\small\textsc{\leftmark}}
+    \fancyhead[R]{\small\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{classic}{
+    \fancyhf{}
+    \fancyhead[L]{\small\leftmark}
+    \fancyhead[C]{\small\rightmark}
+    \fancyhead[R]{\small\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+}
 
 % Page layout optimized for math/physics content
 \geometry{
@@ -315,6 +434,35 @@
     }
 {rem}
 
+% Enhanced theorem environment styling
+\tcbset{
+    theorem_style/.style={
+        enhanced,
+        breakable,
+        sharp corners,
+        boxrule=0.5pt,
+        fonttitle=\bfseries\sffamily,
+        attach boxed title to top left={yshift=-2mm,xshift=2mm},
+        colframe=NavyBlue!70,
+        parskip=6pt,
+        #1
+    }
+}
+
+% New modern box styles
+\newtcbtheorem[number within=section]{moderntheorem}{Theorem}{
+    theorem_style={
+        colback=TheoremBlue!30,
+        colframe=NavyBlue,
+        fonttitle=\bfseries\sffamily,
+        sharp corners=false,
+        rounded corners=4pt,
+        top=2mm,
+        bottom=2mm,
+        left=2mm,
+        right=2mm
+    }
+}{mth}
 
 
 % ================ Convenient Shortcuts ================
