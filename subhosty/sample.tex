@@ -1,0 +1,124 @@
+\documentclass[a4paper]{book}
+\usepackage{personal-mathphys}
+
+\begin{document}
+\maketitlepage{Documentation: personal-mathphys Package}{Package Reference Guide}{Mathematics and Physics Documentation}{December 2024}
+
+\maketocpage
+
+\chapter{Core Package Components}
+
+\section{Document Setup and Fonts}
+The package uses Palatino-like fonts (newpxtext) for body text and matching mathematics fonts (newpxmath). Headers use the Cabin sans-serif font.
+
+\section{Page Layout}
+Page geometry is optimized for mathematical content with:
+\begin{itemize}
+\item Margins: top/bottom 2.5cm, left/right 3cm
+\item Header height: 14pt
+\item Margin width: 3cm for annotations
+\end{itemize}
+
+\chapter{Mathematical and Physical Operators}
+
+\section{Standard Math Operators}
+\begin{definition}{Trace Operator}{trace}
+The trace operator \(\Tr\) returns the sum of diagonal elements.
+\end{definition}
+
+\begin{definition}{Spectrum}{spec}
+The spectrum operator \(\Spec\) gives eigenvalues of a matrix.
+\end{definition}
+
+\begin{definition}{Residue}{residue}
+The residue operator \(\Res\) calculates complex function residues.
+\end{definition}
+
+\section{Vector Calculus Operators}
+\begin{definition}{Curl}{curl-op}
+The curl operator \(\curl\) measures rotation in vector fields.
+\end{definition}
+
+\begin{definition}{Divergence}{div-op}
+The divergence operator \(\dive\) measures field expansion/contraction.
+\end{definition}
+
+\begin{definition}{Gradient}{grad-op}
+The gradient operator \(\grad\) gives direction of steepest increase.
+\end{definition}
+
+\chapter{Custom Commands}
+
+\section{Vector Notation}
+\begin{definition}{Vector Commands}{vectors}
+\begin{itemize}
+\item \verb|\vect{v}|: Bold vector notation \(\vect{v}\)
+\item \verb|\uvec{x}|: Unit vector notation \(\uvec{x}\)
+\item \verb|\divg|: Divergence operator \(\divg\)
+\end{itemize}
+\end{definition}
+
+\section{Quantum Mechanics}
+\begin{definition}{Quantum Notation}{quantum}
+\begin{itemize}
+\item \verb|\bra{x}|: Bra notation \(\bra{x}\)
+\item \verb|\ket{x}|: Ket notation \(\ket{x}\)
+\item \verb|\braket{x}{y}|: Inner product \(\braket{x}{y}\)
+\item \verb|\mean{A}|: Expectation value \(\mean{A}\)
+\end{itemize}
+\end{definition}
+
+\section{Physics Constants}
+\begin{definition}{Physical Constants}{constants}
+\begin{itemize}
+\item \verb|\clight|: Speed of light \(\clight\)
+\item \verb|\planck|: Reduced Planck constant \(\planck\)
+\item \verb|\boltz|: Boltzmann constant \(\boltz\)
+\end{itemize}
+\end{definition}
+
+\chapter{Environments}
+
+\section{Theorem-like Environments}
+\begin{theorem}{Sample Theorem}{sample}
+This demonstrates the theorem environment styling.
+\end{theorem}
+
+\begin{lemma}{Sample Lemma}{sample}
+This demonstrates the lemma environment styling.
+\end{lemma}
+
+\begin{definition}{Sample Definition}{sample}
+This demonstrates the definition environment styling.
+\end{definition}
+
+\section{Physics-Specific Environments}
+\begin{law}{Newton's Second Law}{newton}
+This demonstrates the physical law environment styling.
+\end{law}
+
+\begin{experiment}{Double-Slit}{slit}
+This demonstrates the experiment environment styling.
+\end{experiment}
+
+\begin{note}{Important Note}{note}
+This demonstrates the note environment styling.
+\end{note}
+
+\chapter{Color Schemes}
+
+\section{Defined Colors}
+The package defines these colors:
+\begin{itemize}
+\item NavyBlue (0,32,91)
+\item DeepTeal (0,128,128)
+\item WarmGray (128,128,128)
+\item RoyalPurple (102,51,153)
+\item TheoremBlue (230,240,255)
+\item LemmaGreen (230,255,230)
+\item DefinitionPeach (255,240,230)
+\item ExampleLavender (245,230,255)
+\item NotePink (255,230,240)
+\end{itemize}
+
+\end{document}
